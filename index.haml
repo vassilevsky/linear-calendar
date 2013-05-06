@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title Calendar in a row
+    :css
+      body { height: 100% }
+      #container { position: relative; top: 50%; height: 100px; margin-top: -50px }
+      .day { color: silver; float: left; width: 40px; height: 40px; font: 18pt sans-serif; text-align: center }
+      .today { border-bottom: solid }
+      .weekday6, .weekday0, .holiday { color: pink }
+
+  %body
+    #container
+    %script(type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js")
+    %script(type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/1.7.2/moment.min.js")
+    :coffeescript
+      days_from_today = 21
+
+      holidays =
+        1:  [1..8]
+        3:  [8]
+        5:  [1, 2, 3, 9, 10]
+        6:  [12]
+        11: [4]
+
+      is_a_holiday = (date) ->
+        m = moment date
+        month_num = m.month() + 1
+        day_num = m.date()
+        holidays[month_num] && day_num in holidays[month_num]
+
+      day_div = (date, extra_class='') ->
+        extra_class = ' ' + extra_class if extra_class
+        extra_class += ' holiday' if is_a_holiday(date)
+        m = moment(date)
+        '<div class="day weekday' + m.day() + extra_class + '">' + m.date() + '</div>'
+
+      $('#container').append(day_div(moment().subtract('days', offset))) for offset in [days_from_today..1]
+      $('#container').append(day_div(moment(), 'today'))
+      $('#container').append(day_div(moment().add('days', offset))) for offset in [1..days_from_today]

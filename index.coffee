@@ -1,7 +1,7 @@
 ---
 ---
 
-days_from_today = 21
+days_from_today = 364 / 2
 
 holidays =
   1:  [1..8]

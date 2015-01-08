@@ -1,5 +1,3 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "therubyracer"
-gem "haml"
-gem "haml-coffee"
+gem 'github-pages'

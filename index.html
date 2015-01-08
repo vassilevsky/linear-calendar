@@ -31,7 +31,6 @@
       
         is_a_holiday = function(date) {
           var day_num, m, month_num;
-      
           m = moment(date);
           month_num = m.month() + 1;
           day_num = m.date();
@@ -39,8 +38,7 @@
         };
       
         day_div = function(date, extra_class) {
-          var m;
-      
+          var d, m, n;
           if (extra_class == null) {
             extra_class = '';
           }
@@ -51,7 +49,9 @@
             extra_class += ' holiday';
           }
           m = moment(date);
-          return '<div class="day weekday' + m.day() + extra_class + '">' + m.date() + '</div>';
+          n = m.day();
+          d = m.date();
+          return "<div class='day weekday" + n + extra_class + "'>" + d + "</div>";
         };
       
         for (offset = _i = days_from_today; days_from_today <= 1 ? _i <= 1 : _i >= 1; offset = days_from_today <= 1 ? ++_i : --_i) {

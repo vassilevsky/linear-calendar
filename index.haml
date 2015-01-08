@@ -32,8 +32,12 @@
       day_div = (date, extra_class='') ->
         extra_class = ' ' + extra_class if extra_class
         extra_class += ' holiday' if is_a_holiday(date)
+
         m = moment(date)
-        '<div class="day weekday' + m.day() + extra_class + '">' + m.date() + '</div>'
+        n = m.day()
+        d = m.date()
+
+        "<div class='day weekday\#{n}\#{extra_class}'>\#{d}</div>"
 
       $('#container').append(day_div(moment().subtract('days', offset))) for offset in [days_from_today..1]
       $('#container').append(day_div(moment(), 'today'))

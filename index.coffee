@@ -24,7 +24,7 @@ day_div = (date, extra_class='') ->
   n = m.day()
   d = m.date()
 
-  "<div class='day weekday#{n}#{extra_class}'>#{d}</div>"
+  "<div class='day weekday#{n}#{extra_class}'><div class='date'>#{d}</div></div>"
 
 $('#container').append(day_div(moment().subtract('days', offset))) for offset in [days_from_today..1]
 $('#container').append(day_div(moment(), 'today'))
